@@ -31,8 +31,8 @@ export default function Clock() {
   return (
     <ClockContainer clockColor={clockColor}>
       <div id="clock-skew">
-        {timeArr.map(n =>
-          <div key={ n } className={n < 10 ? "analog-digit-container" : "colon-container"}>
+        {timeArr.map((n, index) =>
+          <div key={ index } className={n < 10 ? "analog-digit-container" : "colon-container"}>
             {numbers[n].map((row, i) => // value of time array matches index of corresponding "number" matrix
               <div key={i * 1.23} className="row">
                 {row.map((num, idx) =>
