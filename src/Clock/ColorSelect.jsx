@@ -17,6 +17,7 @@ export default function ColorSelect({clockColor, setClockColor}) {
       />
       {colorArray.map(c =>
         <FontAwesomeIcon
+          key={c}
           icon={faPalette}
           className="color-picker"
           style={{color: c,zIndex: clockColor === c ? "1" : "0"}} // selected color always on top

@@ -10,28 +10,33 @@ export default function Clock() {
   const [am, setAm] = useState();
   const [clockColor, setClockColor] = useState('#77ff41');
 
+  const checkAm = () => {
+    setAm(new Date().getHours() >= 13 ? false : true)
+  }
+
   useEffect(() => {
     // when component mounts, set time
     setTime(makeTimeArray(new Date()));
     // set time again at start of next minute to ensure accuracy
-    setTimeout((() => setTime(makeTimeArray(new Date(), setAm))), (60 - seconds) * 1000);
-    setAm(new Date().getHours() >= 13 ? false : true);
+    setTimeout((() => setTime(makeTimeArray(new Date()))), (60 - seconds) * 1000);
+    checkAm();
   }, [clockColor]);
 
   useEffect(() => {
     // when clock refreshes, set interval to update component every minute
-    setInterval((() => setTime(makeTimeArray(new Date(), setAm))), 60000);
+    setInterval((() => setTime(makeTimeArray(new Date()))), 60000);
+    checkAm();
   }, [timeArr]);
 
   return (
     <ClockContainer clockColor={clockColor}>
       <div id="clock-skew">
         {timeArr.map(n =>
-          <div className={n < 10 ? "analog-digit-container" : "colon-container"}>
-            {numbers[n].map(row => // value of time array matches index of corresponding "number" matrix
-              <div className="row">
-                {row.map(num =>
-                  <div className={num === 1 ? "block on" : "block off"}>
+          <div key={ n } className={n < 10 ? "analog-digit-container" : "colon-container"}>
+            {numbers[n].map((row, i) => // value of time array matches index of corresponding "number" matrix
+              <div key={i * 1.23} className="row">
+                {row.map((num, idx) =>
+                  <div key={idx * 2.94 } className={num === 1 ? "block on" : "block off"}>
                   </div>
                 )}
               </div>
