@@ -76,6 +76,15 @@ export const ClockContainer = styled.div`
     text-shadow: 0px 0px  1px lightgray;
   }
 
+  @media screen and (max-width: 400px) {
+    padding: 20px;
+
+    .block {
+      width: 3vw;
+      height: 3vw;
+    }
+  }
+
   
 `
 
@@ -90,6 +99,17 @@ justify-content: center;
   font-size: 22px;
   border-radius: 10px;
   margin: ${({showColors}) => showColors ? "0 5px" : "0 -11px"};
+}
+
+@media screen and (max-width: 400px) {
+  margin: 5px 0 0 0;
+  margin-left: ${({ showColors }) => showColors ? "0px" : "5px"};
+
+
+  .color-picker {
+    font-size: 18px;
+    margin: ${({showColors}) => showColors ? "0 5px" : "0 -9px"};
+  }
 }
 
 
