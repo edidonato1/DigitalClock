@@ -11,7 +11,7 @@ export default function Clock() {
   const [clockColor, setClockColor] = useState('#77ff41');
 
   const checkAm = () => {
-    setAm(new Date().getHours() >= 13 ? false : true)
+    setAm(new Date().getHours() > 13 ? false : true)
   }
 
   useEffect(() => {
